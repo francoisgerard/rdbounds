@@ -27,7 +27,6 @@ timer clear 51
 timer on 51
 
 set more off
-set seed 519
 
 qui set type float, permanently
 

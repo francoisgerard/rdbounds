@@ -65,12 +65,12 @@
 #' @export
 #' @references Francois Gerard, Miikka Rokkanen, and Christoph Rothe (2016)."Bounds on Treatment Effects in Regression Discontinuity Designs under Manipulation of the Running Variable, with an Application to Unemployment Insurance in Brazil". NBER Working Paper 22892.
 #' @examples \donttest{df<-rdbounds_sampledata(50000, covs=TRUE)
-#' rdbounds_est<-rdbounds(y=df$y,x=df$x, covs=df$cov, treatment=df$treatment, c=0,
-#'                discrete_x=FALSE, discrete_y=FALSE, bwsx=c(.2,1), bwy = .1,
-#'                kernel="triangular", orders=c(1,1),
-#'                evaluation_ys = seq(from = 0, to=23, by=.1),  ymin=0, ymax=23,
-#'                right_effects=TRUE, yextremes = c(0,23),
-#'                num_bootstraps=c(1,1))
+#' rdbounds_est<-rdbounds(y=df$y,x=df$x, covs=as.factor(df$cov), treatment=df$treatment, c=0,
+#'                        discrete_x=FALSE, discrete_y=FALSE, bwsx=c(.2,.5), bwy = .1,
+#'                        kernel="epanechnikov", orders=1,
+#'                        evaluation_ys = seq(from = 0, to=23, by=.2), ymin=0, ymax=23,
+#'                        num_bootstraps=0, refinement_A=TRUE, refinement_B=TRUE, 
+#'                        right_effects=TRUE, yextremes = c(0,23))
 #' rdbounds_summary(rdbounds_est, title_prefix="Sample Data Results")}
 
 #' @import data.table
@@ -92,7 +92,6 @@ rdbounds <- function(y, x, covs = NULL, treatment = NULL, c = 0,
 
   #INTERPRET AND CHECK PARAMETERS
   #------------------------------------------------------------------
-  set.seed(1)
   options(warn=1, warnings.length=8170)
   start_time <- Sys.time()
 
@@ -838,10 +837,10 @@ estimateCDFs <- function(inputs=NULL, tau_hat, treatLeft, treatRight, y, dist_cu
       } else{
         inputs$G<-(inputs$F_right_treated-kappa1*inputs$F_left_treated)/(1-kappa1)
         #Correct G()
-        inputs$G<-pmin(pmax(inputs$G,0),1)
-        inputs$G<-sort(inputs$G)
-        if(mean(inputs$G!=pmin(pmax(inputs$G,0),1))>.02){warning_bs(paste0("warning from bootstrap: ", isBs, ", tau=", isTau, isCov, ": the function G(y) (see paper for definition) should be a CDF, but it contains more than 2% of values outside of the unit interval. Values have been censored to the unit interval."), warningfile=warningfile)}
         if(!all(pmax(inputs$G,0)==sort(pmax(inputs$G,0)))){warning_bs(paste0("Warning from bootstrap: ", isBs, ", tau=", isTau, isCov, ": the function G(y) (see paper for definition) should be a CDF, but is not monotonic. Values have been monotonized, but this could be evidence against the model."), warningfile=warningfile)}
+        inputs$G<-pmin(pmax(inputs$G,0),1)
+        if(mean(inputs$G!=pmin(pmax(inputs$G,0),1))>.02){warning_bs(paste0("warning from bootstrap: ", isBs, ", tau=", isTau, isCov, ": the function G(y) (see paper for definition) should be a CDF, but it contains more than 2% of values outside of the unit interval. Values have been censored to the unit interval."), warningfile=warningfile)}
+        inputs$G<-sort(inputs$G)
       }
 
       F_Y1_FRD_t<-lapply(
@@ -1835,8 +1834,6 @@ rdbounds_sampledata<- function(sample_size=50000, covs=FALSE){
 
 generate_subsample<- function(sample_size, covs){
 
-  set.seed(1)
-
   #x values for potentially-assigned, ~ N(0,5) censored at -10 and 10
   if(covs==FALSE){n0<-floor(sample_size*.95)}
   if(covs=="group 1"){n0<-floor(sample_size*.975)}
@@ -1890,12 +1887,12 @@ generate_subsample<- function(sample_size, covs){
 #' @param text if set to \code{TRUE}, display results as text as well as formatted table. Defaults to \code{TRUE}.
 #' @param title_prefix Optional prefix before "Average Treatment EFfects" or "Quantile Treatment Effects" in table.
 #' @examples \donttest{df<-rdbounds_sampledata(50000, covs=TRUE)
-#' rdbounds_est<-rdbounds(y=df$y,x=df$x, covs=df$cov, treatment=df$treatment, c=0,
-#'                discrete_x=FALSE, discrete_y=FALSE, bwsx=c(.2,1), bwy = .1,
-#'                kernel="triangular", orders=c(1,1),
-#'                evaluation_ys = seq(from = 0, to=23, by=.1),  ymin=0, ymax=23,
-#'                right_effects=TRUE, yextremes = c(0,23),
-#'                num_bootstraps=c(1,1))
+#' rdbounds_est<-rdbounds(y=df$y,x=df$x, covs=as.factor(df$cov), treatment=df$treatment, c=0,
+#'                        discrete_x=FALSE, discrete_y=FALSE, bwsx=c(.2,.5), bwy = .1,
+#'                        kernel="epanechnikov", orders=1,
+#'                        evaluation_ys = seq(from = 0, to=23, by=.2), ymin=0, ymax=23,
+#'                        num_bootstraps=0, refinement_A=TRUE, refinement_B=TRUE, 
+#'                        right_effects=TRUE, yextremes = c(0,23))
 #' rdbounds_summary(rdbounds_est, title_prefix="Sample Data Results")}
 #' @export
 
@@ -1908,8 +1905,8 @@ rdbounds_summary <- function(rdbounds, title_prefix="", text=TRUE) {
          call. = FALSE)
   }
 
-  print(paste0("Time taken:", round(rdbounds$time_taken, digits=2), " minutes"))
-  print(paste0("Sample size:", rdbounds$sample_size))
+  print(paste0("Time taken: ", round(rdbounds$time_taken, digits=2), " minutes"))
+  print(paste0("Sample size: ", rdbounds$sample_size))
 
   results_u<-sapply(1:length(rdbounds$TEs),
                     function(i)
@@ -1964,13 +1961,13 @@ rdbounds_summary <- function(rdbounds, title_prefix="", text=TRUE) {
 #' @param file_name base filename to output tables to. Expects a string of the form "path/filename", where filename has no extension and will be the root filename for a series of different files containing different tables. If omitted no files will be produced.
 #' @param view_it Boolean. View main results table in Rstudio viewer. Defaults to \code{FALSE}.
 #' @examples \donttest{df<-rdbounds_sampledata(50000, covs=TRUE)
-#' rdbounds_est<-rdbounds(y=df$y,x=df$x, covs=df$cov, treatment=df$treatment, c=0,
-#'                discrete_x=FALSE, discrete_y=FALSE, bwsx=c(.2,1), bwy = .1,
-#'                kernel="triangular", orders=c(1,1),
-#'                evaluation_ys = seq(from = 0, to=23, by=.1),  ymin=0, ymax=23,
-#'                right_effects=TRUE, yextremes = c(0,23),
-#'                num_bootstraps=c(1,1))
-#' rdbounds_export(rdbounds_est, file_name="mypath/rdboundsresults", view_it=TRUE)}
+#' rdbounds_est<-rdbounds(y=df$y,x=df$x, covs=as.factor(df$cov), treatment=df$treatment, c=0,
+#'                        discrete_x=FALSE, discrete_y=FALSE, bwsx=c(.2,.5), bwy = .1,
+#'                        kernel="epanechnikov", orders=1,
+#'                        evaluation_ys = seq(from = 0, to=23, by=.2), ymin=0, ymax=23,
+#'                        num_bootstraps=0, refinement_A=TRUE, refinement_B=TRUE, 
+#'                        right_effects=TRUE, yextremes = c(0,23))
+#' rdbounds_summary(rdbounds_est, title_prefix="Sample Data Results")}
 #' @export
 
 #EXPORT - EXPORT TABLES OF RESULTS AND INTERMEDIATE QUANTITIES
