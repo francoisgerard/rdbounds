@@ -1,6 +1,7 @@
 v 3
 d rdbounds.  Manipulation Robust Regression Discontinuity Bounds Estimation (v 1.00)
-d This package implements the estimation procedure in Gerard, Rokkanen, and Rothe (2018) to estimate bounds on treatment effects under potential manipulation of the running varible. Paper available at www.nber.org/papers/w22892.
+d This package implements the estimation procedure in Gerard, Rokkanen, and Rothe (2018) to estimate bounds on treatment effects under potential manipulation of the running varible.
+d Paper available at http://www.nber.org/papers/w22892.
 d Package by Francois Gerard, Leonard Goff, Miikka Rokkanen, and Christoph Rothe
 d Please direct comments to leonard.goff at columbia dot edu
 
