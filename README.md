@@ -23,7 +23,7 @@ The ```rdbounds``` function requires the Stata package ```moremata```, which can
 ssc install moremata
 ```
 
-Here's some test code to get you going, once installed:
+Here's some test code to get you going, once ```rdbounds``` is installed:
 
 ```
 library(formattable)
@@ -56,7 +56,7 @@ matrix list e(treatment_effects_ATE)
 
 Alternatively, you may download [R/rdbounds_1.0.tar.gz](R/rdbounds_1.0.tar.gz) and install the package from source code. You will need to also install the packages ```formattable``` and ```data.table``` if you do not have them already.
 
-Here's some test code to get you going, once installed:
+Here's some test code to get you going, once ```rdbounds``` is installed:
 
 ```{r}
 library(formattable)
