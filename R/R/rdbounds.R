@@ -1782,7 +1782,6 @@ print_message <- function(message, progressFile){
 #------------------------------------------------------------------
 warning_bs <- function(message, warningfile=NULL){
   warning(message)
-  cat(strftime(Sys.time(),"%Y-%m-%d %H:%M:%S"), " ", warningfile, "\n", file = "C:/Users/Len/Dropbox/Research/__Existing/RDManipulation/R/scrap/warnings.txt", append = TRUE)
   if(!is.null(warningfile)){cat(strftime(Sys.time(),"%Y-%m-%d %H:%M:%S"), " ", message, "\n", file = warningfile, append = TRUE)}
 }
 
