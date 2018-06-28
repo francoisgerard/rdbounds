@@ -2,11 +2,11 @@
 
 This is a public repository for the package ```rdbounds``` for Stata and R, implementing the estimation procedure developed in the paper: [Bounds on Treatment Effects in Regression Discontinuity Designs under Manipulation of the Running Variable, with an Application to Unemployment Insurance in Brazil](http://www.nber.org/papers/w22892 "NBER Working Paper"), by François Gerard, Miikka Rokkanen, and Christoph Rothe.
 
-This is a preliminary version of the code and is still undergoing testing. We appreciate any feedback or issues noted. Please direct your comments to leonard.goff at columbia dot edu.
+This is a preliminary version of the code and is still undergoing testing. We appreciate any feedback or issues noted. Please direct your comments to leonard.goff at columbia dot edu. The current version is 1.00, dated July 1st, 2018.
 
 The Stata version of the code generally runs a bit faster, but this may depend on your version of Stata and the number of cores on your computer, among other things.
 
-## Stata Version (Version 1.00)
+## Stata Version
 
 The file [Stata/rdbounds.ado](Stata/rdbounds.ado) is the main code file. You can install ```rdbounds``` by downloading this to your ado directory for Stata, e.g. C:\ado\personal.
 
@@ -23,7 +23,7 @@ The ```rdbounds``` function also requires the Stata package ```moremata```, whic
 ssc install moremata
 ```
 
-## R Version (Version 1.00)
+## R Version
 
 See [R/rdbounds.pdf](R/rdbounds.pdf) for documentation. The code is viewable in [R/rdbounds.R](R/rdbounds.R).
 
