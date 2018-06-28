@@ -1,0 +1,4 @@
+v 3
+d Repository for Stata function rdbounds  
+
+p rdbounds Manipulation Robust Regression Discontinuity Bounds Estimation (v 1.00)
