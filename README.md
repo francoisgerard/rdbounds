@@ -1,24 +1,24 @@
 ## Manipulation Robust Regression Discontinuity Bounds Estimation in Stata and R
 
-This is a public repository for the package ```rdbounds``` for Stata and R, implementing the estimation procedure developed in the paper: [Bounds on Treatment Effects in Regression Discontinuity Designs under Manipulation of the Running Variable, with an Application to Unemployment Insurance in Brazil](http://www.nber.org/papers/w22892 "NBER Working Paper"), by François Gerard, Miikka Rokkanen, and Christoph Rothe.
+This is a public repository for the package ```rdbounds``` for Stata and R, which implements the estimation procedure developed in the paper [Bounds on Treatment Effects in Regression Discontinuity Designs under Manipulation of the Running Variable, with an Application to Unemployment Insurance in Brazil](http://www.nber.org/papers/w22892 "NBER Working Paper"), by François Gerard, Miikka Rokkanen, and Christoph Rothe.
 
-This is a preliminary version of the code and is still undergoing testing. We appreciate any feedback or issues noted. Please direct your comments to leonard.goff at columbia dot edu. The current version is 1.00, dated July 1st, 2018.
+This is a preliminary version of the code and is offered without warranty. We appreciate any feedback or issues noted. Please direct your comments to leonard.goff at columbia dot edu. The current version is 1.00, dated July 1st, 2018.
 
 The Stata version of the code generally runs a bit faster with many bootstrap resamples, but this may depend on your version of Stata and the number of cores on your computer, among other things.
 
 ## Stata Version
 
-The file [Stata/rdbounds.ado](Stata/rdbounds.ado) is the main code file. You can install ```rdbounds``` by downloading this to your ado directory for Stata, e.g. C:\ado\personal.
+The file [Stata/rdbounds.ado](Stata/rdbounds.ado) is the main code file. The files [Stata/rdbounds.sthlp](Stata/rdbounds_sampledata.sthlp) and [Stata/rdbounds_sampledata.sthlp](Stata/rdbounds.sthlp) are Stata help files for the main ```rdbounds``` function and for the function ```rdbounds_sampledata``` (which generates a sample dataset to experiment with) respectively.
 
-The files [Stata/rdbounds.sthlp](Stata/rdbounds_sampledata.sthlp) and [Stata/rdbounds_sampledata.sthlp](Stata/rdbounds.sthlp) are Stata help files for the main ``rdbounds''' function and for the function ``rdbounds_sampledata''' (which generates a sample dataset to experiment with) respectively. These should also be dropped into your local ado directory or can be viewed directly in the Stata help file viewer.
- 
-Alternatively, the package can be installed directly from Stata by running
+The package can be installed directly from within Stata by running
 ```
 net describe rdbounds from https://github.com/leonardgoff/rdbounds/Stata
 net install rdbounds
 ```
- 
-The ```rdbounds``` function also requires the Stata package ```moremata```, which can be installed by running:
+
+Alternatively, you can install ```rdbounds``` by downloading ```rdbounds.ado``` to your ado directory for Stata, e.g. C:\ado\personal. The help files should also be dropped into your local ado directory or can be viewed directly in the Stata help file viewer. 
+
+The ```rdbounds``` function requires the Stata package ```moremata```, which can be installed by running:
 ```
 ssc install moremata
 ```
@@ -41,7 +41,7 @@ rdbounds_summary(rdbounds_est, title_prefix="Sample Data Results")
 
 ## R Version
 
-See [R/rdbounds.pdf](R/rdbounds.pdf) for documentation. The code is viewable in [R/rdbounds.R](R/rdbounds.R).
+The main code file is [R/rdbounds.R](R/rdbounds.R), and the documentation can be found here: [R/rdbounds.pdf](R/rdbounds.pdf).
 
 You may install the ```rdbounds``` package directly from this repository using the ```devtools``` package, by running the following commands in R (the first three lines may not be necessary if you already have the corresponding packages installed):
 
