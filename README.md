@@ -8,7 +8,7 @@ The Stata version of the code generally runs a bit faster than the R version wit
 
 ## Stata Version
 
-The file [Stata/rdbounds.ado](Stata/rdbounds.ado) is the main code file. The files [Stata/rdbounds.sthlp](Stata/rdbounds_sampledata.sthlp) and [Stata/rdbounds_sampledata.sthlp](Stata/rdbounds.sthlp) are Stata help files for the main ```rdbounds``` function and for the function ```rdbounds_sampledata``` (which generates a sample dataset to experiment with) respectively.
+The file [Stata/rdbounds.ado](Stata/rdbounds.ado) is the main code file, and [Stata/rdbounds.sthlp](Stata/rdbounds_sampledata.sthlp) is a Stata help files for the ```rdbounds``` function. The second .ado file [Stata/rdbounds_sampledata.ado](Stata/rdbounds_sampledata.ado) generates a sample dataset to experiment with, and its associated help file is  [Stata/rdbounds_sampledata.sthlp](Stata/rdbounds.sthlp).
 
 The package can be installed directly from within Stata by running
 ```
@@ -17,7 +17,7 @@ net describe rdbounds
 net install rdbounds
 ```
 
-Alternatively, you can install the package by downloading ```rdbounds.ado``` to your ado directory for Stata, e.g. C:\ado\personal. The help files should also be dropped into your local ado directory or can be viewed directly in the Stata help file viewer. 
+Alternatively, you can install the package by downloading ```rdbounds.ado``` and ```rdbounds_sampledata.ado``` to your ado directory for Stata, e.g. C:\ado\personal. The help files should also be dropped into your local ado directory or can be viewed directly in the Stata help file viewer. 
 
 The ```rdbounds``` function requires the Stata package ```moremata```, which can be installed by running:
 ```

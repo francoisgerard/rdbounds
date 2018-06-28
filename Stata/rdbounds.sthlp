@@ -53,7 +53,7 @@
 {marker description}{...}
 {title:Description}
 
-{p 4 8}This function implements the estimation procedure developed in {browse "http://www.nber.org/papers/w22892":Gerard, Rokkanen, and Rothe (2018)}, to estimate bounds on treatment effects under potential manipulation of the running varible.{p_end}
+{p 4 8}This function implements the estimation procedure developed in {browse "http://www.nber.org/papers/w22892":Gerard, Rokkanen, and Rothe (2018)}, to estimate bounds on treatment effects under potential manipulation of the running variable.{p_end}
 
 {title:Dependencies}
 
@@ -169,9 +169,7 @@
 
 {title:References}
 
-{p 4 8}F. Gerard, M. Rokkanen, and C. Rothe. 2016. Bounds on Treatment Effects in Regression Discontinuity Designs under Manipulation of the Running Variable, with an Application to Unemployment Insurance in Brazil.
-Working Paper.
-{browse "http://www.nber.org/papers/w22892"}.{p_end}
+{p 4 8}F. Gerard, M. Rokkanen, and C. Rothe. 2016. Bounds on Treatment Effects in Regression Discontinuity Designs under Manipulation of the Running Variable, with an Application to Unemployment Insurance in Brazil. NBER Working Paper 22892. {browse "http://www.nber.org/papers/w22892"}.{p_end}
 
 {title:Authors}
 

@@ -6,5 +6,6 @@ d Package by Francois Gerard, Leonard Goff, Miikka Rokkanen, and Christoph Rothe
 d Please direct comments to leonard.goff at columbia dot edu
 
 f rdbounds.ado
+f rdbounds_sampledata.ado
 f rdbounds.sthlp
 f rdbounds_sampledata.sthlp

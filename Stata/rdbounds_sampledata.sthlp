@@ -50,10 +50,7 @@ Specifically: y=(x+10)/2*treatment*(alwaysassigned=0)+5*treatment*(alwaysassigne
 
 {title:References}
 
-{p 4 8}F. Gerard, M. Rokkanen, and C. Rothe. 2016. Bounds on Treatment Effects in Regression Discontinuity Designs under Manipulation of the Running Variable, with an Application to Unemployment Insurance in Brazil.
-Working Paper.
-{browse "http://www.nber.org/papers/w22892"}.{p_end}
-
+{p 4 8}F. Gerard, M. Rokkanen, and C. Rothe. 2016. Bounds on Treatment Effects in Regression Discontinuity Designs under Manipulation of the Running Variable, with an Application to Unemployment Insurance in Brazil. NBER Working Paper 22892. {browse "http://www.nber.org/papers/w22892"}.{p_end}
 {title:Authors}
 
 {p 4 8}Francois Gerard, Columbia University.
