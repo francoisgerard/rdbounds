@@ -4,7 +4,7 @@ This is a public repository for the package ```rdbounds``` for Stata and R, whic
 
 This is a preliminary version of the code and is offered without warranty. We appreciate any feedback or issues noted. Please direct your comments to leonard.goff at columbia dot edu. The current version is 1.00, dated July 1st, 2018.
 
-The Stata version of the code generally runs a bit faster with many bootstrap resamples, but this may depend on your version of Stata and the number of cores on your computer, among other things.
+The Stata version of the code generally runs a bit faster than the R version with many bootstrap resamples, but this may depend on your version of Stata and the number of cores on your computer, among other things.
 
 ## Stata Version
 
@@ -16,7 +16,7 @@ net describe rdbounds from https://github.com/leonardgoff/rdbounds/Stata
 net install rdbounds
 ```
 
-Alternatively, you can install ```rdbounds``` by downloading ```rdbounds.ado``` to your ado directory for Stata, e.g. C:\ado\personal. The help files should also be dropped into your local ado directory or can be viewed directly in the Stata help file viewer. 
+Alternatively, you can install the package by downloading ```rdbounds.ado``` to your ado directory for Stata, e.g. C:\ado\personal. The help files should also be dropped into your local ado directory or can be viewed directly in the Stata help file viewer. 
 
 The ```rdbounds``` function requires the Stata package ```moremata```, which can be installed by running:
 ```
@@ -43,7 +43,7 @@ rdbounds_summary(rdbounds_est, title_prefix="Sample Data Results")
 
 The main code file is [R/rdbounds.R](R/rdbounds.R), and the documentation can be found here: [R/rdbounds.pdf](R/rdbounds.pdf).
 
-You may install the ```rdbounds``` package directly from this repository using the ```devtools``` package, by running the following commands in R (the first three lines may not be necessary if you already have the corresponding packages installed):
+You may install the package directly from this repository using the ```devtools``` package, by running the following commands in R (the first three lines may not be necessary if you already have the corresponding packages installed):
 
 ```{r}
 set seed 1
