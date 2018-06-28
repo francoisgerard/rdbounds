@@ -60,10 +60,10 @@ Specifically: y=(x+10)/2*treatment*(alwaysassigned=0)+5*treatment*(alwaysassigne
 {browse "mailto:leonard.goff@columbia.edu":leonard.goff@columbia.edu}.{p_end}
 
 {p 4 8}Miikka Rokkanen, Amazon.
-{browse "mailtomiikka.rokkanen@gmail.com":mr3454@columbia.edu}.{p_end}
+{browse "mailto:miikka.rokkanen@gmail.com":miikka.rokkanen@gmail.com}.{p_end}
 
 {p 4 8}Christoph Rothe, University of Mannheim.
-{browse "mailto:rothe@vwl.uni-mannheim.de":christoph.s.rothe@gmail.com}.{p_end}
+{browse "mailto:rothe@vwl.uni-mannheim.de":rothe@vwl.uni-mannheim.de}.{p_end}
 
 {title:See Also}
 

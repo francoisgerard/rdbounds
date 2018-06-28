@@ -159,10 +159,10 @@
 {synopt:{cmd:e(takeup_increase)}}estimated increase in probability of treatment at the cutoff (if fuzzy RDD){p_end}
 {synopt:{cmd:e(seconds_taken)}}length of time taken for computation in seoonds{p_end}
 
-{synopt:{cmd:e(tau_hat_CI_lower)}} lower limit of confidence interavl for {cmd: tau_hat}{p_end}
-{synopt:{cmd:e(tau_hat_CI_upper)}} upper limit of confidence interavl for {cmd: tau_hat}{p_end}
-{synopt:{cmd:e(takeup_CI_lower)}} lower limit of confidence interavl for {cmd: takeup}{p_end}
-{synopt:{cmd:e(takeup_CI_upper)}} upper limit of confidence interavl for {cmd: takeup}{p_end}
+{synopt:{cmd:e(tau_hat_CI_lower)}} lower limit of confidence interval for {cmd: tau_hat}{p_end}
+{synopt:{cmd:e(tau_hat_CI_upper)}} upper limit of confidence interval for {cmd: tau_hat}{p_end}
+{synopt:{cmd:e(takeup_CI_lower)}} lower limit of confidence interval for {cmd: takeup_increase}{p_end}
+{synopt:{cmd:e(takeup_CI_upper)}} upper limit of confidence interval for {cmd: takeup_increase}{p_end}
 
 {synopt:{cmd:e(treatment_effects_{it:effect)}} table of treatment effect estimates and confidence intervals for treatment effect {it:effect}, e.g. ATE, QTE10, QTE50, etc.}{p_end}
 {synopt:{cmd:e(fixedtau_{it:effect)}} table of treatment effect estimates and confidence intervals for treatment effect {it:effect} and fixed values of tau specified through the {cmd:potential_taus} option}{p_end}
@@ -180,10 +180,10 @@
 {browse "mailto:leonard.goff@columbia.edu":leonard.goff@columbia.edu}.{p_end}
 
 {p 4 8}Miikka Rokkanen, Amazon.
-{browse "mailto:miikka.rokkanen@gmail.com":mr3454@columbia.edu}.{p_end}
+{browse "mailto:miikka.rokkanen@gmail.com":miikka.rokkanen@gmail.com}.{p_end}
 
 {p 4 8}Christoph Rothe, University of Mannheim.
-{browse "mailto:rothe@vwl.uni-mannheim.de":christoph.s.rothe@gmail.com}.{p_end}
+{browse "mailto:rothe@vwl.uni-mannheim.de":rothe@vwl.uni-mannheim.de}.{p_end}
 
 {title:See Also}
 
