@@ -12,7 +12,7 @@ The file [Stata/rdbounds.ado](Stata/rdbounds.ado) is the main code file. The fil
 
 The package can be installed directly from within Stata by running
 ```
-net from https://github.com/leonardgoff/rdbounds/Stata
+net from https://raw.githubusercontent.com/leonardgoff/rdbounds/master/Stata/
 net describe rdbounds
 net install rdbounds
 ```
