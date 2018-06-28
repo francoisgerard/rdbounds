@@ -37,7 +37,7 @@ matrix list e(treatment_effects_ATE)
 
 ## R Version
 
-The main code file is [R/rdbounds.R](R/rdbounds.R), and the documentation can be found here: [R/rdbounds.pdf](R/rdbounds.pdf).
+The main code file is [R/R/rdbounds.R](R/R/rdbounds.R), and the documentation can be found here: [R/rdbounds.pdf](R/rdbounds.pdf).
 
 You may install the package directly from this repository using the ```devtools``` package, by running the following commands in R (the first three lines may not be necessary if you already have the corresponding packages installed):
 
