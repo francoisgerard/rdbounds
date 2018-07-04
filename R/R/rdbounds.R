@@ -66,11 +66,12 @@
 #' @references Francois Gerard, Miikka Rokkanen, and Christoph Rothe (2016)."Bounds on Treatment Effects in Regression Discontinuity Designs under Manipulation of the Running Variable, with an Application to Unemployment Insurance in Brazil". NBER Working Paper 22892.
 #' @examples \donttest{df<-rdbounds_sampledata(50000, covs=TRUE)
 #' rdbounds_est<-rdbounds(y=df$y,x=df$x, covs=as.factor(df$cov), treatment=df$treatment, c=0,
-#'                        discrete_x=FALSE, discrete_y=FALSE, bwsx=c(.2,.5), bwy = .1,
-#'                        kernel="epanechnikov", orders=1,
-#'                        evaluation_ys = seq(from = 0, to=23, by=.2), ymin=0, ymax=23,
-#'                        num_bootstraps=0, refinement_A=TRUE, refinement_B=TRUE, 
-#'                        right_effects=TRUE, yextremes = c(0,23))
+#'                        discrete_x=FALSE, discrete_y=FALSE,
+#'                        bwsx=c(.2,.5), bwy = .1, kernel="epanechnikov", orders=1,
+#'                        evaluation_ys = seq(from = 0, to=23, by=.2),
+#'                        refinement_A=TRUE, refinement_B=TRUE,
+#'                        right_effects=TRUE, yextremes = c(0,23),
+#'                        num_bootstraps=0)
 #' rdbounds_summary(rdbounds_est, title_prefix="Sample Data Results")}
 
 #' @import data.table
@@ -260,7 +261,7 @@ rdbounds <- function(y, x, covs = NULL, treatment = NULL, c = 0,
   #------------------------------------------------------------------
   tau_tilde <- compute_tau_tilde(kernel=kernel, order=orders[1], x=dist_cut, bwsx=bwsx, discrete_x=discrete_x)
   tau_hat <- max(0,tau_tilde)
-  
+
   print(paste0("The proportion of always-assigned units just to the right of the cutoff is estimated to be ", round(tau_hat, digits=5)))
   if(tau_hat==0){warning("No evidence of manipulation found, thus bounds based on estimated tau will not differ from estimation that assumes no manipulation")}
 
@@ -723,7 +724,7 @@ estimateCDFs <- function(inputs=NULL, tau_hat, treatLeft, treatRight, y, dist_cu
       s_notau<-pmin(dens_left_untreated/kappa0, dens_right_untreated)
       inputs$s_notau<-s_notau
       if(!discrete_y){s_notau_mass<-pdf2cdf(little_ys=little_ys, pdfy = s_notau, integral_only=TRUE)} else{s_notau_mass<-pmf2cdf(pmfy=s_notau, integral_only=TRUE)}
-      
+
       #Warnings/checks on s_notau
       if(isBs==0 & (s_notau_mass<1-tau0L) & tau_hat>0){
         stop(paste0("Error for tau=", isTau, isCov, ": the estimated identified set for tau0 is null. This occurs when s(y)*(1-tau0) (see paper for definition) integrates to less than 1-tau0L. In this case it integrates to ", round(s_notau_mass, digits=3), " and tau0L is ", round(tau0L, digits=3), ". If this is a covariate subsample or tau != estimated, you will need to re-run without covs or the potential_taus option, respectively. If bootstrap=-1 (meaning the starred estimands in notation of the paper--see section on inference), you may wish to rerun."))
@@ -837,9 +838,9 @@ estimateCDFs <- function(inputs=NULL, tau_hat, treatLeft, treatRight, y, dist_cu
       } else{
         inputs$G<-(inputs$F_right_treated-kappa1*inputs$F_left_treated)/(1-kappa1)
         #Correct G()
-        if(!all(pmax(inputs$G,0)==sort(pmax(inputs$G,0)))){warning_bs(paste0("Warning from bootstrap: ", isBs, ", tau=", isTau, isCov, ": the function G(y) (see paper for definition) should be a CDF, but is not monotonic. Values have been monotonized, but this could be evidence against the model."), warningfile=warningfile)}
-        inputs$G<-pmin(pmax(inputs$G,0),1)
         if(mean(inputs$G!=pmin(pmax(inputs$G,0),1))>.02){warning_bs(paste0("warning from bootstrap: ", isBs, ", tau=", isTau, isCov, ": the function G(y) (see paper for definition) should be a CDF, but it contains more than 2% of values outside of the unit interval. Values have been censored to the unit interval."), warningfile=warningfile)}
+        inputs$G<-pmin(pmax(inputs$G,0),1)
+        if(mean(pmax(inputs$G,0)!=sort(inputs$G))>.02){warning_bs(paste0("Warning from bootstrap: ", isBs, ", tau=", isTau, isCov, ": the function G(y) (see paper for definition) should be a CDF, but is not completely monotonic (at least 2% would need to be reordered). Values have been monotonized, but this could be evidence against the model."), warningfile=warningfile)}
         inputs$G<-sort(inputs$G)
       }
 
@@ -1268,7 +1269,7 @@ CIs_estimate <- function(CDFinputs=NULL, parallelize=FALSE, fuzzy, gotCovs, covs
     estimates_tau_star<-NA
     estimates_tau_b<-NA
   }
-  
+
   if(parallelize & is.finite(file.info(warningfile)$size)){
     if(file.info(warningfile)$size>0){
       warning(paste0("There were supressed warnings from parellized bootstrap runs (or warningFile already had contents before rdbounds was run). Here they are: ", readChar(warningfile, file.info(warningfile)$size)))
@@ -1887,11 +1888,12 @@ generate_subsample<- function(sample_size, covs){
 #' @param title_prefix Optional prefix before "Average Treatment EFfects" or "Quantile Treatment Effects" in table.
 #' @examples \donttest{df<-rdbounds_sampledata(50000, covs=TRUE)
 #' rdbounds_est<-rdbounds(y=df$y,x=df$x, covs=as.factor(df$cov), treatment=df$treatment, c=0,
-#'                        discrete_x=FALSE, discrete_y=FALSE, bwsx=c(.2,.5), bwy = .1,
-#'                        kernel="epanechnikov", orders=1,
-#'                        evaluation_ys = seq(from = 0, to=23, by=.2), ymin=0, ymax=23,
-#'                        num_bootstraps=0, refinement_A=TRUE, refinement_B=TRUE, 
-#'                        right_effects=TRUE, yextremes = c(0,23))
+#'                        discrete_x=FALSE, discrete_y=FALSE,
+#'                        bwsx=c(.2,.5), bwy = .1, kernel="epanechnikov", orders=1,
+#'                        evaluation_ys = seq(from = 0, to=23, by=.2),
+#'                        refinement_A=TRUE, refinement_B=TRUE,
+#'                        right_effects=TRUE, yextremes = c(0,23),
+#'                        num_bootstraps=0)
 #' rdbounds_summary(rdbounds_est, title_prefix="Sample Data Results")}
 #' @export
 
@@ -1961,11 +1963,12 @@ rdbounds_summary <- function(rdbounds, title_prefix="", text=TRUE) {
 #' @param view_it Boolean. View main results table in Rstudio viewer. Defaults to \code{FALSE}.
 #' @examples \donttest{df<-rdbounds_sampledata(50000, covs=TRUE)
 #' rdbounds_est<-rdbounds(y=df$y,x=df$x, covs=as.factor(df$cov), treatment=df$treatment, c=0,
-#'                        discrete_x=FALSE, discrete_y=FALSE, bwsx=c(.2,.5), bwy = .1,
-#'                        kernel="epanechnikov", orders=1,
-#'                        evaluation_ys = seq(from = 0, to=23, by=.2), ymin=0, ymax=23,
-#'                        num_bootstraps=0, refinement_A=TRUE, refinement_B=TRUE, 
-#'                        right_effects=TRUE, yextremes = c(0,23))
+#'                        discrete_x=FALSE, discrete_y=FALSE,
+#'                        bwsx=c(.2,.5), bwy = .1, kernel="epanechnikov", orders=1,
+#'                        evaluation_ys = seq(from = 0, to=23, by=.2),
+#'                        refinement_A=TRUE, refinement_B=TRUE,
+#'                        right_effects=TRUE, yextremes = c(0,23),
+#'                        num_bootstraps=0)
 #' rdbounds_summary(rdbounds_est, title_prefix="Sample Data Results")}
 #' @export
 

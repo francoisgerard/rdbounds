@@ -3,10 +3,13 @@ Title: Manipulation Robust Regression Discontinuity Bounds Estimation
 Version: 1.0
 Authors@R: c(person("Leonard", "Goff", email = "leonard.goff@columbia.edu", role = "cre"), person("Francois", "Gerard", email = "fgerard@columbia.edu", role = "aut"), person("Miikka", "Rokkanen", email = "mr3454@columbia.edu", role = "aut"), person("Christoph", "Rothe", email = "cr2690@columbia.edu", role = "aut"))
 Authors: Francois Gerard <fgerard@columbia.edu>, Leonard Goff
-    <leonard.goff@columbia.edu>, Miikka Rokkanen <miikka.rokkanen@gmail.com>, Christoph
-    Rothe <rothe@vwl.uni-mannheim.de>
+    <leonard.goff@columbia.edu>, Miikka Rokkanen <miikka.rokkanen@gmail.com>,
+    Christoph Rothe <rothe@vwl.uni-mannheim.de>
 Maintainer: Leonard Goff <leonard.goff@columbia.edu>
-Description: This package implements the estimation procedure in Gerard, Rokkanen, and Rothe (2018) to estimate bounds on treatment effects under potential manipulation of the running varible. This is a preliminary version and is still undergoing testing. We appreciate hearing any comments or issues noted.
+Description: This package implements the estimation procedure in Gerard,
+    Rokkanen, and Rothe (2018) to estimate bounds on treatment effects under
+    potential manipulation of the running varible. This is a preliminary version and
+    is still undergoing testing. We appreciate hearing any comments or issues noted.
 URL: http://www.nber.org/papers/w22892
 Imports:
     data.table,

@@ -19,11 +19,12 @@ This function exports tables from manipulation robust RD estimation
 \examples{
 \donttest{df<-rdbounds_sampledata(50000, covs=TRUE)
 rdbounds_est<-rdbounds(y=df$y,x=df$x, covs=as.factor(df$cov), treatment=df$treatment, c=0,
-                       discrete_x=FALSE, discrete_y=FALSE, bwsx=c(.2,.5), bwy = .1,
-                       kernel="epanechnikov", orders=1,
-                       evaluation_ys = seq(from = 0, to=23, by=.2), ymin=0, ymax=23,
-                       num_bootstraps=0, refinement_A=TRUE, refinement_B=TRUE, 
-                       right_effects=TRUE, yextremes = c(0,23))
+                       discrete_x=FALSE, discrete_y=FALSE,
+                       bwsx=c(.2,.5), bwy = .1, kernel="epanechnikov", orders=1,
+                       evaluation_ys = seq(from = 0, to=23, by=.2),
+                       refinement_A=TRUE, refinement_B=TRUE,
+                       right_effects=TRUE, yextremes = c(0,23),
+                       num_bootstraps=0)
 rdbounds_summary(rdbounds_est, title_prefix="Sample Data Results")}
 }
 
