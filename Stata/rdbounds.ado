@@ -1,6 +1,6 @@
 /*
 ********************************************************************************
-VERSION 1.00 (JULY 1, 2018)
+VERSION 1.00 (JULY 1, 2018) 
 DISCLAIMER: THIS CODE SHOULD BE CONSIDERED PRELIMINARY AND IS OFFERED WITHOUT WARRANTY.
 WE APPRECIATE YOUR COMMENTS AND ANY ISSUES NOTICED, AT LEONARD.GOFF AT COLUMBIA DOT EDU
 Copyright (C) 2018 Francois Gerard, Leonard Goff, Miikka Rokkanen, & Christoph Rothe.

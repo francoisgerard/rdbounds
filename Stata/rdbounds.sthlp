@@ -13,7 +13,7 @@
 {marker syntax}{...}
 {title:Syntax}
 
-{p 4 8}{cmd:rdbounds } {it:depvar} {it:runningvar} {ifin} 
+{p 4 8}{cmd:rdbounds} {it:depvar} {it:runningvar} {ifin} 
 [{cmd:,} 
 {cmd:covs(}{it:covsvars}{cmd:)}
 {cmd:treatment(}{it:treatmentvar}{cmd:)}
