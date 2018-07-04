@@ -29,7 +29,7 @@ Here's some test code to get you going, once ```rdbounds``` is installed:
 ```
 set seed 1
 rdbounds_sampledata, samplesize(50000) clear covs
-rdbounds y x, c(0) treatment(treatment) covs(cov) bwsx(.2, .5) bwy(.1) evaluation_ys("0 .2 to 23") orders(1) kernel(epanechnikov) ymin(0) ymax(23) type(ate) num_bootstraps(0) num_rs(200) refinementA refinementB righteffects yextremes(0 23)
+rdbounds y x, c(0) treatment(treatment) covs(cov) bwsx(.2, .5) bwy(.1) evaluation_ys("0 .2 to 23") orders(1) kernel(epanechnikov) type(ate) refinementA refinementB righteffects yextremes(0 23) num_bootstraps(0)
 disp "tau_hat: `e(tau_hat)'"
 disp "takeup increase: `e(takeup_increase)'"
 matrix list e(treatment_effects_ATE)

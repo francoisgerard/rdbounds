@@ -1254,7 +1254,7 @@ forvalues b = `firstb'/`num_bs' {
 						qui count if rank!=rank_old 
 						if r(N) > (.02*_N)  & `b'==0{{
 							local therewerewarnings=1
-							di as result "Warning: the function G(y) (see paper for definition) should be a CDF, but is not completely monotonic (at least 2% reordered). Values have been monotonized, but this could be evidence against the model."							
+							di as result "Warning: the function G(y) (see paper for definition) should be a CDF, but is not completely monotonic (at least 2% would need to be reordered). Values have been monotonized, but this could be evidence against the model."							
 							if `verbose'==1 {
 								di as result "--Positive numbers indicate non-monotonicities in that fixedtau/covariate value cell, for main sample (not bootstrap sample). w=0 indicates the full sample (not conditional on covariate), and fixedtau=0 indicates tau is estimated, not fixed via {cmd:potential_taus}:"
 								qui gen warninghere = rank!=rank_old

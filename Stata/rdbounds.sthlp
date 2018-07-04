@@ -114,7 +114,7 @@
 
 {p 4 8}{cmd:num_lambdas(}{it:#}{cmd:)} integer number of points to search over for the causal effect of units just to the right of the cutoff (lambda in paper). Defaults to 50.{p_end}
 
-{p 4 8}{cmd:num_rs(}{it:#}{cmd:)} integer number of points to search over to find r_alpha when computing confidence intervals (see Section 5.2 of paper). {p_end}
+{p 4 8}{cmd:num_rs(}{it:#}{cmd:)} integer number of points to search over to find r_alpha when computing confidence intervals (see Section 5.2 of paper). Defaults to 100. {p_end}
 
 {p 4 8}{cmd:kernel_y(}{it:kernelname}{cmd:)} allows a separate kernel for density estimation of {it: depvar}. Same choices as kernel for {it: runningvar}. Defaults to kernel specified for use with {it: runningvar}. {p_end}
 
@@ -141,7 +141,7 @@
 {p 8 8}{cmd:. rdbounds_sampledata, samplesize(50000) covs clear}{p_end}
 
 {p 4 8}Run estimation{p_end}
-{p 8 8}{cmd:. rdbounds y x, c(0) covs(cov) righteffects bwsx(.2,1) bwy(.1) evaluation_ys("0 0.1 to 23") orders(1) yextremes(0 23) ymin(0) ymax(23) kernel(triangular) num_bootstraps(0)	}{p_end}
+{p 8 8}{cmd:. rdbounds y x, c(0) treatment(treatment) covs(cov) bwsx(.2, .5) bwy(.1) evaluation_ys("0 .2 to 23") orders(1) kernel(epanechnikov) type(ate) refinementA refinementB righteffects yextremes(0 23) num_bootstraps(0)}{p_end}
 
 {p 4 8}Display results{p_end}
 {p 8 8}{cmd:. disp "tau_hat: `e(tau_hat)'"}{p_end}
