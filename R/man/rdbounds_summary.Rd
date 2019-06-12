@@ -27,4 +27,3 @@ rdbounds_est<-rdbounds(y=df$y,x=df$x, covs=as.factor(df$cov), treatment=df$treat
                        num_bootstraps=0)
 rdbounds_summary(rdbounds_est, title_prefix="Sample Data Results")}
 }
-

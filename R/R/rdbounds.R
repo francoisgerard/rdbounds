@@ -1,5 +1,5 @@
 #--------------------------------------------------------------------------
-#VERSION 1.00 (JULY 1, 2018)
+#VERSION 1.01 (JUNE 12, 2019)
 #DISCLAIMER: THIS CODE SHOULD BE CONSIDERED PRELIMINARY AND IS OFFERED WITHOUT WARRANTY.
 #WE APPRECIATE YOUR COMMENTS AND ANY ISSUES NOTICED, AT LEONARD.GOFF AT COLUMBIA DOT EDU
 #Copyright (C) 2018 Francois Gerard, Leonard Goff, Miikka Rokkanen, & Christoph Rothe.
@@ -840,7 +840,7 @@ estimateCDFs <- function(inputs=NULL, tau_hat, treatLeft, treatRight, y, dist_cu
         #Correct G()
         if(mean(inputs$G!=pmin(pmax(inputs$G,0),1))>.02){warning_bs(paste0("warning from bootstrap: ", isBs, ", tau=", isTau, isCov, ": the function G(y) (see paper for definition) should be a CDF, but it contains more than 2% of values outside of the unit interval. Values have been censored to the unit interval."), warningfile=warningfile)}
         inputs$G<-pmin(pmax(inputs$G,0),1)
-        if(mean(pmax(inputs$G,0)!=sort(inputs$G))>.02){warning_bs(paste0("Warning from bootstrap: ", isBs, ", tau=", isTau, isCov, ": the function G(y) (see paper for definition) should be a CDF, but is not completely monotonic (at least 2% would need to be reordered). Values have been monotonized, but this could be evidence against the model."), warningfile=warningfile)}
+        if(mean(inputs$G != sort(inputs$G))>.02){warning_bs(paste0("Warning from bootstrap: ", isBs, ", tau=", isTau, isCov, ": the function G(y) (see paper for definition) should be a CDF, but is not completely monotonic (at least 2% would need to be reordered). Values have been monotonized, but this could be evidence against the model."), warningfile=warningfile)}
         inputs$G<-sort(inputs$G)
       }
 
@@ -1258,6 +1258,15 @@ CIs_estimate <- function(CDFinputs=NULL, parallelize=FALSE, fuzzy, gotCovs, covs
       })
       parallel::stopCluster(clus)
       estimates_tau_b<-lapply(1:length(potential_taus), function(tau) lapply(1:B, function(b) estimates_tauBcombos[[(b-1)*length(potential_taus)+tau]]))
+
+      if(file.info(warningfile)$size>0){
+        warning(paste0("There were supressed warnings from parellized bootstrap runs (or warningFile already had contents before rdbounds was run). Here they are: ", readChar(warningfile, file.info(warningfile)$size)))
+      }
+
+      if(!is.null(warningsFile)){
+        unlist(warningfile)
+      }
+
     } else{
       estimates_tau_b<-lapply(1:length(potential_taus), function(tau) lapply(1:B, function(b){
         this_allCDFs<-get_allCDFs(CDFinputs=CDFinputs$bootstraps[[b]], tau_hat=potential_taus[tau], y=y[unlist(resample_indices[b])], dist_cut=dist_cut[unlist(resample_indices[b])], fuzzy = fuzzy, treatment=treatment[unlist(resample_indices[b])], polynomial=generate_polynomial_matrix(dist_cut[unlist(resample_indices[b])],orders[2]), W=W[unlist(resample_indices[b])], Wcov=Wcov[unlist(resample_indices[b])], num_tau_pairs=num_tau_pairs, little_ys=little_ys, discrete_y=discrete_y, discrete_x=discrete_x, gotCovs=FALSE, right_effects=FALSE, yextremes=yextremes, num_lambdas=num_lambdas, bwy=bwy, bwycov=bwycov, kernel_y=kernel_y, yboundaries=yboundaries, isBs=b, isTau=potential_taus[tau], orders=orders, bwsx=bwsx, bwsxcov=bwsxcov, kernel=kernel, progressFile=progressFile, refinements=refinements)
@@ -1268,15 +1277,6 @@ CIs_estimate <- function(CDFinputs=NULL, parallelize=FALSE, fuzzy, gotCovs, covs
   else{
     estimates_tau_star<-NA
     estimates_tau_b<-NA
-  }
-
-  if(parallelize & is.finite(file.info(warningfile)$size)){
-    if(file.info(warningfile)$size>0){
-      warning(paste0("There were supressed warnings from parellized bootstrap runs (or warningFile already had contents before rdbounds was run). Here they are: ", readChar(warningfile, file.info(warningfile)$size)))
-    }
-  }
-  if(is.null(warningsFile)){
-    unlist(warningfile)
   }
 
   #CALCULATE CIs

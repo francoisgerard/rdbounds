@@ -19,4 +19,3 @@ The x-values of potentially-assigned units (95% of sample) are normally distribu
 \examples{
 \donttest{df<-rdbounds_sampledata(50000);}
 }
-

@@ -1,6 +1,6 @@
 Package: rdbounds
 Title: Manipulation Robust Regression Discontinuity Bounds Estimation
-Version: 1.0
+Version: 1.01
 Authors@R: c(person("Leonard", "Goff", email = "leonard.goff@columbia.edu", role = "cre"), person("Francois", "Gerard", email = "fgerard@columbia.edu", role = "aut"), person("Miikka", "Rokkanen", email = "mr3454@columbia.edu", role = "aut"), person("Christoph", "Rothe", email = "cr2690@columbia.edu", role = "aut"))
 Authors: Francois Gerard <fgerard@columbia.edu>, Leonard Goff
     <leonard.goff@columbia.edu>, Miikka Rokkanen <miikka.rokkanen@gmail.com>,
@@ -17,4 +17,4 @@ Imports:
     parallel
 License: GPL-3
 Encoding: UTF-8
-RoxygenNote: 5.0.1
+RoxygenNote: 6.1.1

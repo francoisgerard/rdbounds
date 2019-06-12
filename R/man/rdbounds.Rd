@@ -4,16 +4,17 @@
 \alias{rdbounds}
 \title{Manipulation Robust Regression Discontinuity Bounds Estimation}
 \usage{
-rdbounds(y, x, covs = NULL, treatment = NULL, c = 0, discrete_x = FALSE,
-  discrete_y = FALSE, bwsx, bwy = NULL, kernel = "triangular",
-  orders = array(1, dim = c(2)), evaluation_ys = NULL, ymin = NULL,
-  ymax = NULL, type = "ate", percentiles = NULL, num_tau_pairs = 50,
-  refinement_A = FALSE, refinement_B = FALSE, right_effects = FALSE,
-  yextremes = NULL, num_lambdas = 50, num_bootstraps = c(100, 20),
-  Kn = NULL, alpha = 0.05, potential_taus = NULL, parallelize = TRUE,
+rdbounds(y, x, covs = NULL, treatment = NULL, c = 0,
+  discrete_x = FALSE, discrete_y = FALSE, bwsx, bwy = NULL,
+  kernel = "triangular", orders = array(1, dim = c(2)),
+  evaluation_ys = NULL, ymin = NULL, ymax = NULL, type = "ate",
+  percentiles = NULL, num_tau_pairs = 50, refinement_A = FALSE,
+  refinement_B = FALSE, right_effects = FALSE, yextremes = NULL,
+  num_lambdas = 50, num_bootstraps = c(100, 20), Kn = NULL,
+  alpha = 0.05, potential_taus = NULL, parallelize = TRUE,
   progressFile = NULL, warningsFile = NULL, kernel_y = NULL,
-  bwsxcov = NULL, bwycov = NULL, CDFinputs = list(original = NULL, CIsetup
-  = NULL))
+  bwsxcov = NULL, bwycov = NULL, CDFinputs = list(original = NULL,
+  CIsetup = NULL))
 }
 \arguments{
 \item{y}{specifies the outcome/dependent variable. Required.}
@@ -107,4 +108,3 @@ Francois Gerard, Miikka Rokkanen, and Christoph Rothe (2016)."Bounds on Treatmen
 \keyword{manipulation,}
 \keyword{regression}
 \keyword{robust}
-
