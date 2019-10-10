@@ -49,7 +49,7 @@ library(devtools)
 install_github("francoisgerard/rdbounds/R")
 ```
 
-Alternatively, you may download [R/rdbounds_1.01.tar.gz](R/rdbounds_1.0.tar.gz) and install the package from source code. You will need to also install the packages ```formattable``` and ```data.table``` if you do not have them already.
+Alternatively, you may download [R/rdbounds_1.01.tar.gz](R/rdbounds_1.01.tar.gz) and install the package from source code. You will need to also install the packages ```formattable``` and ```data.table``` if you do not have them already.
 
 Here's some test code to get you going, once ```rdbounds``` is installed:
 
